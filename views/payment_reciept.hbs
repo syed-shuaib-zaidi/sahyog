@@ -1,0 +1,288 @@
+<html>
+    <head>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <style>
+            	.modal-confirm {		
+                color: #636363;
+                width: 325px;
+            }
+            .modal-confirm .modal-content {
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+            }
+            .modal-confirm .modal-header {
+                border-bottom: none;   
+                position: relative;
+            }
+            .modal-confirm h4 {
+                text-align: center;
+                font-size: 26px;
+                margin: 30px 0 -15px;
+            }
+            .modal-confirm .form-control, .modal-confirm .btn {
+                min-height: 40px;
+                border-radius: 3px; 
+            }
+            .modal-confirm .close {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+            }	
+            .modal-confirm .modal-footer {
+                border: none;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 13px;
+            }	
+            .modal-confirm .icon-box {
+                color: #fff;		
+                position: absolute;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                top: -70px;
+                width: 95px;
+                height: 95px;
+                border-radius: 50%;
+                z-index: 9;
+                background: #82ce34;
+                padding: 15px;
+                text-align: center;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+            }
+            .modal-confirm .icon-box i {
+                font-size: 58px;
+                position: relative;
+                top: 3px;
+            }
+            .modal-confirm.modal-dialog {
+                margin-top: 80px;
+            }
+            .modal-confirm .btn {
+                color: #fff;
+                border-radius: 4px;
+                background: #82ce34;
+                text-decoration: none;
+                transition: all 0.4s;
+                line-height: normal;
+                border: none;
+            }
+            .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+                background: #6fb32b;
+                outline: none;
+            }
+            .trigger-btn {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar sticky top navbar-expand-lg navbar-light" style="background-color: #58b4ae;">
+            <a class="navbar-brand" href="#">Project सहयोग</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
+                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </div>
+            </div>
+        </nav>
+        <div class="container" style="margin: 20px">
+            <div class="row">
+                <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <address>
+                                <strong>{{receipt.vendorUser.name}}</strong>
+                                <br>
+                                {{receipt.vendorUser.address}}
+                                <br>
+                                <abbr title="Phone">P:</abbr> {{receipt.vendorUser.contact}}
+                            </address>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                            <p>
+                                <em>Date: {{receipt.createdAt}}</em>
+                            </p>
+                            <p>
+                                <em>Receipt #:{{receipt.id}}</em>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h1>Receipt</h1>
+                        </div>
+                        </span>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>#</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each receipt.ppes}}
+                                <tr>
+                                    <td class="col-md-9"><em>{{this.name}}</em></h4></td>
+                                    <td class="col-md-1" style="text-align: center"> {{this.quantity}} </td>
+                                    <td class="col-md-1 text-center">$45</td>
+                                    <td class="col-md-1 text-center">$26</td>
+                                </tr>
+                               {{/each}}
+                                <tr>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td class="text-right">
+                                    <p>
+                                        <strong>Subtotal: </strong>
+                                    </p>
+                                    <p>
+                                        <strong>Tax: </strong>
+                                    </p></td>
+                                    <td class="text-center">
+                                    <p>
+                                        <strong>$6.94</strong>
+                                    </p>
+                                    <p>
+                                        <strong>$6.94</strong>
+                                    </p></td>
+                                </tr>
+                                <tr>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                    <td class="text-center text-danger"><h4><strong>$3242</strong></h4></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{!-- <button type="button" class="btn btn-success btn-lg btn-block">
+                            <a href="#myModal" class="trigger-btn" data-toggle="modal" style="text-decoration: none; color: white;">Pay Now</a>   <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button></td> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="icon-box">
+                                <i class="material-icons">&#xE876;</i>
+                            </div>				
+                            <h4 class="modal-title" style="margin-left: 27%;">Awesome!</h4>	
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <br/>
+            <br/>
+            
+            <!-- Footer -->
+            <footer class="page-footer font-small pt-4" style="background-color: #58b4ae;">
+
+                <!-- Footer Links -->
+                <div class="container-fluid text-center text-md-left">
+            
+                <!-- Grid row -->
+                <div class="row">
+            
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
+            
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Footer Content</h5>
+                    <p>Here you can use rows and columns to organize your footer content.</p>
+            
+                    </div>
+                    <!-- Grid column -->
+            
+                    <hr class="clearfix w-100 d-md-none pb-3">
+            
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+            
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+            
+                    <ul class="list-unstyled">
+                        <li>
+                        <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+            
+                    </div>
+                    <!-- Grid column -->
+            
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+            
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+            
+                    <ul class="list-unstyled">
+                        <li>
+                        <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                        <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+            
+                    </div>
+                    <!-- Grid column -->
+            
+                </div>
+                <!-- Grid row -->
+            
+                </div>
+                <!-- Footer Links -->
+            
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
+            
+            </footer>
+            <!-- Footer -->            
+                
+        </body>
+</html>
