@@ -18,7 +18,7 @@ The project is hosted on heroku and can be found on the link: [http://sahyog-the
 ### The Team
 **Team Name** Annas from VIT
 - [Gunjan Agrawal](https://www.linkedin.com/in/gunjanagrawalvit/) (Team leader)
-- [Salman](https://github.com/jethrocoder)
+- [Syed Mohammad Shuaib Zaidi](https://github.com/jethrocoder)
 - [Nitin Ranjan](https://www.linkedin.com/in/nitin-ranjan-50b165190/)
 - [Shivansh Vyas]()
 
